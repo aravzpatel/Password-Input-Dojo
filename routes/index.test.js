@@ -15,4 +15,13 @@ describe("Index file", () => {
     expect(res.statusCode).toBe(200);
     expect(res.body).toEqual({status:false,message: "Password must be at least 8 characters"})
   });
+
+  it("password should have atleast 2 digits", async () => {
+    const res = await request(app).post("/").send({
+      'password': 'MikeTyson'
+    });
+    expect(res.statusCode).toBe(200);
+    expect(res.body).toEqual({status:false,message: "The password must contain at least 2 numbers"})
+  });
+
 });
